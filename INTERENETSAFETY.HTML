@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>URL Safety Interactive Lab</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    margin: 0;
+    padding: 20px;
+}
+h1, h2 {
+    text-align: center;
+}
+.section {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    max-width: 900px;
+}
+.url-box {
+    border: 2px dashed #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    cursor: grab;
+}
+.dropzone {
+    min-height: 100px;
+    border: 2px solid #888;
+    padding: 10px;
+    margin: 10px;
+}
+.safe { background: #d4f5e9; }
+.suspicious { background: #ffe1e1; }
+button {
+    padding: 10px 20px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #1e40af;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🕵️ URL SAFETY INTERACTIVE LAB</h1>
+<p style="text-align:center;">Think Before You Click</p>
+
+<!-- ACTIVITY 1 -->
+<div class="section">
+<h2>1️⃣ URL Detective (Tick the Correct Option)</h2>
+
+<p>https://www.google.com</p>
+<input type="checkbox"> SAFE
+<input type="checkbox"> SUSPICIOUS
+
+<p>http://www.go0gle-login.xyz</p>
+<input type="checkbox"> SAFE
+<input type="checkbox"> SUSPICIOUS
+
+<p>https://www.amazon.in</p>
+<input type="checkbox"> SAFE
+<input type="checkbox"> SUSPICIOUS
+
+<p>https://amazon-secure-login.info</p>
+<input type="checkbox"> SAFE
+<input type="checkbox"> SUSPICIOUS
+
+<p>https://www.schoolname.edu</p>
+<input type="checkbox"> SAFE
+<input type="checkbox"> SUSPICIOUS
+</div>
+
+<!-- ACTIVITY 2 -->
+<div class="section">
+<h2>2️⃣ Drag & Drop URL Sorting</h2>
+
+<div>
+<div class="url-box" draggable="true">https://www.youtube.com</div>
+<div class="url-box" draggable="true">https://paytm-verification.xyz</div>
+<div class="url-box" draggable="true">https://www.icicibank.com</div>
+<div class="url-box" draggable="true">http://secure-bank-login.co</div>
+</div>
+
+<div style="display:flex;">
+<div class="dropzone safe">✅ TRUSTED</div>
+<div class="dropzone suspicious">⚠️ SUSPICIOUS</div>
+</div>
+</div>
+
+<!-- ACTIVITY 3 -->
+<div class="section">
+<h2>3️⃣ Spot the Fake Brand</h2>
+
+<p>Which is FAKE?</p>
+<input type="radio" name="amazon"> www.amazon.in<br>
+<input type="radio" name="amazon"> www.amaz0n-pay.co<br><br>
+
+<input type="radio" name="insta"> www.instagram.com<br>
+<input type="radio" name="insta"> www.instagrarn-login.net<br>
+</div>
+
+<!-- ACTIVITY 4 -->
+<div class="section">
+<h2>4️⃣ Padlock Hunt</h2>
+
+<p>HTTPS means:</p>
+<input type="checkbox"> Encrypted connection<br>
+<input type="checkbox"> Website is always safe<br>
+<input type="checkbox"> Data is protected<br>
+<input type="checkbox"> No need to check URL spelling<br>
+</div>
+
+<!-- ACTIVITY 5 -->
+<div class="section">
+<h2>5️⃣ Phishing Alert</h2>
+
+<p>"You won ₹50,000! Click now!"</p>
+<select>
+<option>Choose Action</option>
+<option>Open</option>
+<option>Report</option>
+<option>Delete</option>
+</select>
+
+<p>"Your bank account is locked. Verify immediately."</p>
+<select>
+<option>Choose Action</option>
+<option>Open</option>
+<option>Report</option>
+<option>Delete</option>
+</select>
+</div>
+
+<!-- ACTIVITY 6 -->
+<div class="section">
+<h2>6️⃣ URL Escape Room</h2>
+
+<p>Which URL is safer?</p>
+<input type="radio" name="escape"> https://www.khanacademy.org<br>
+<input type="radio" name="escape"> http://khanacademy-login.xyz<br>
+
+<p>True or False: HTTPS means always safe</p>
+<input type="radio" name="tf"> True
+<input type="radio" name="tf"> False
+</div>
+
+<!-- ACTIVITY 7 -->
+<div class="section">
+<h2>7️⃣ Build a Safe & Fake URL</h2>
+
+SAFE URL:<br>
+<input type="text" style="width:100%"><br><br>
+
+FAKE URL:<br>
+<input type="text" style="width:100%">
+</div>
+
+<!-- ACTIVITY 8 -->
+<div class="section">
+<h2>8️⃣ Final Safety Checklist</h2>
+
+<input type="checkbox"> HTTPS present<br>
+<input type="checkbox"> Correct spelling<br>
+<input type="checkbox"> Trusted domain<br>
+<input type="checkbox"> No extra symbols<br>
+<input type="checkbox"> Looks official<br>
+</div>
+
+<div style="text-align:center;">
+<button onclick="alert('Great job! You completed the URL Safety Lab 🎉')">
+Finish Activity
+</button>
+</div>
+
+<script>
+const boxes = document.querySelectorAll('.url-box');
+const zones = document.querySelectorAll('.dropzone');
+
+boxes.forEach(box => {
+    box.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', e.target.innerText);
+        e.dataTransfer.effectAllowed = 'move';
+    });
+});
+
+zones.forEach(zone => {
+    zone.addEventListener('dragover', e => e.preventDefault());
+    zone.addEventListener('drop', e => {
+        e.preventDefault();
+        const text = e.dataTransfer.getData('text/plain');
+        const div = document.createElement('div');
+        div.className = 'url-box';
+        div.innerText = text;
+        zone.appendChild(div);
+    });
+});
+</script>
+
+</body>
+</html>
